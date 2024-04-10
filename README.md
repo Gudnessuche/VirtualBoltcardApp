@@ -1,32 +1,37 @@
-# Virtual Boltcard
-This app uses Android HCE to emulate Boltcards. But only the POS-communication part. 
-Configuring Boltcards using NFC is not supported.
+Virtual Boltcard
+The Virtual Boltcard app leverages Android Host Card Emulation (HCE) to emulate Boltcards, specifically focusing on the POS communication aspect. However, please note that configuring Boltcards using NFC is not supported.
 
-## How it works
-- if you start the app you have have to authenticate with your fingerprint or device-pin
-this is because you have access to a lnbits wallet once the app is started. Also you can change the active card.
-- with no card configured, you have 3 options to start:
-1. create a lnbits account - creates an account, boltcard and lnurlp link on specified lbits-server.
-    You can specify serverurl name and limits or just go with the defaults, currently legend.lnbits.com
-    The app saves the **apikey and tracks the balance of your account**. the qrcode for the paylink is shown. 
-    if you tap it a installed wallet that can handle lnurlp should open.
-   **currently there is no export of the cards, so make sure if you setup a new LNBits-card to open the wallet and backup as usual**
-2. import an existing boltcard from an lnbits wallet. Qrcode or url accepted.
-3. manually setup an existing boltcard
-- you can setup multiple cards (the "+"-bubble in the lower right of the screen is the only options currently.)
-- active card is always the visual card. Just swipe another card in view to activate it. 
-- there is currently no way to disable emulation, so you have to deactivate nfc to do that atm.
-- emulation currently also works from the lockscreen. it stops if the screen is black, 
-but once its on hce works and we are not quiet sure yet if thats a good or a bad thing.
-
-## Security
-- The app stores your boltcard url, keys and counter in encrypted settings-storage and an encrypted mssql database the password is randomly created on the first launch and saved to the encrypted settings-storage.
-- Everyone with access to this data is able to access your sats.
-- If you create an lnbits wallet from within the app, the api-keys are saved as well in the encrypted mssql database.
-- I tried to get this reasonably safe, but i am **not** an experienced app-developer so i probably have completely missed that. In that case please leave an issue so we can fix it :-)
-- a Boltcard is a offline device which keeps the cards url, keys and counter. You decrease security by putting this data directly onto your phone.
-
-## Ref
-- https://github.com/underwindfall/NFCAndroid
-- https://github.com/boltcard
-- https://www.boltcard.org/
+How It Works
+Authentication: When you launch the app, you’ll need to authenticate using either your fingerprint or device PIN. This step is essential because once the app starts, you gain access to an LNbits wallet. Additionally, you can switch between active cards.
+Starting Without Configured Cards:
+Option 1: Create an LNbits Account:
+This choice sets up an account, a Boltcard, and an LNURLp link on the specified LNbits server.
+You can customize the server URL, name, and limits, or simply use the defaults (currently set to legend.lnbits.com).
+The app securely stores your API key and monitors your account balance.
+A QR code for the payment link is displayed. Tapping it opens an installed wallet capable of handling LNURLp.
+Note: Card export functionality is not available yet, so when setting up a new LNBits card, remember to back up your wallet as usual.
+Option 2: Import an Existing Boltcard:
+You can import an existing Boltcard from an LNbits wallet using either a QR code or a URL.
+Option 3: Manual Setup of an Existing Boltcard.
+Multiple Cards:
+You can configure multiple cards (accessed via the “+” bubble in the lower-right corner of the screen).
+The active card always corresponds to the visual card. Swipe to activate a different card.
+Emulation and NFC:
+Currently, there is no way to disable emulation. To do so, you’ll need to deactivate NFC.
+Emulation even works from the lock screen, although we’re still evaluating whether this is advantageous or problematic.
+Security Considerations
+Data Storage:
+The app securely stores your Boltcard URL, keys, and counter in encrypted settings storage and an encrypted MSSQL database.
+The initial password is randomly generated during the first launch and saved securely.
+Access to Sats:
+Anyone with access to this data can potentially access your satoshis (sats).
+LNbits Wallet Creation:
+If you create an LNbits wallet within the app, the API keys are also securely saved in the encrypted MSSQL database.
+Safety Disclaimer:
+While I’ve made efforts to enhance security, I am not an experienced app developer. If you identify any issues, please report them so we can address them promptly.
+Boltcard Security:
+A Boltcard is an offline device that stores card URLs, keys, and counters. By directly placing this data on your phone, you compromise security.
+References
+NFCAndroid Repository
+Boltcard Repository
+Boltcard Official Website
